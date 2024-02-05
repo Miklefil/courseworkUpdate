@@ -1,0 +1,26 @@
+{% extends 'mailings/base.html' %}
+{% load static %}
+{% block content %}
+    <main>
+        <a href="/message_create/" class="w-100 btn btn-lg btn-outline-primary">Создать сообщение</a>
+        <div class="row row-cols-1 row-cols-md-3 mb-3 text-left">
+            <div class="col">
+                {% for message in object_list %}
+                <div class="card mb-4 rounded-3 shadow-sm">
+                    <div class="card-header py-3">
+                        <h4 class="my-0 fw-normal">{{ message.subject }}</h4>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-unstyled mt-3 mb-4">
+                            <li>{{ message.body }}</li>
+                        </ul>
+                        <a href="/message_detail/{{ message.pk }}/" class="w-100 btn btn-lg btn-outline-primary">Детали сообщения</a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+        </div>
+
+    </main>
+{% endblock %}

@@ -1,0 +1,78 @@
+{% extends 'mailings/base.html' %}
+{% load static %}
+{% load mediapath %}
+{% block content %}
+<main>
+    <div class="row row-cols-1 row-cols-md-3 mb-3 text-left">
+        <div class="col">
+
+            <div class="card mb-4 rounded-3 shadow-sm">
+                <div class="card-header py-3">
+                    <h4 class="my-0 fw-normal">Показать всех пользователей</h4>
+                </div>
+                <div class="card-body">
+                    <ul class="list-unstyled mt-3 mb-4">
+                    </ul>
+                    <a href="/client_list_view/" class="w-100 btn btn-lg btn-outline-primary">Выбор списка клиентов</a>
+                </div>
+            </div>
+
+        </div>
+        <div class="col">
+
+            <div class="card mb-4 rounded-3 shadow-sm">
+                <div class="card-header py-3">
+                    <h4 class="my-0 fw-normal">Показать все сообщения</h4>
+                </div>
+                <div class="card-body">
+                    <ul class="list-unstyled mt-3 mb-4">
+                    </ul>
+                    <a href="/message_list_view/" class="w-100 btn btn-lg btn-outline-primary">Выбор списка сообщений</a>
+                </div>
+            </div>
+
+        </div>
+        <div class="col">
+
+            <div class="card mb-4 rounded-3 shadow-sm">
+                <div class="card-header py-3">
+                    <h4 class="my-0 fw-normal">Показать все настройки</h4>
+                </div>
+                <div class="card-body">
+                    <ul class="list-unstyled mt-3 mb-4">
+                    </ul>
+                    <a href="/settings_list_view/" class="w-100 btn btn-lg btn-outline-primary">Просмотр рассылок</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <h2 class="display-6 text-center mb-4">Логи рассылки</h2>
+
+    <div class="table-responsive">
+        <table class="table text-center">
+            <thead>
+            <tr>
+                <th>Client</th>
+                <th>Status</th>
+                <th>Email Subject</th>
+                <th>date time</th>
+                <th>Server Response</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for l in logs %}
+            <tr>
+                <td>{{ l.client.name }} {{ l.client.surname }}</td>
+                <td>{{ l.status }}</td>
+                <td>{{ l.email_subject }}</td>
+                <td>{{ l.date_time }}</td>
+                <td>{{ l.server_response }}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</main>
+{% endblock %}
+

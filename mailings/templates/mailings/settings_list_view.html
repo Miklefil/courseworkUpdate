@@ -1,0 +1,34 @@
+{% extends 'mailings/base.html' %}
+{% load static %}
+{% block content %}
+<main>
+    <a href="/settings_create/" class="w-100 btn btn-lg btn-outline-primary">Создать настройки</a>
+    <div class="row row-cols-1 row-cols-md-3 mb-3 text-left">
+        <div class="col">
+            {% for settings in object_list %}
+            <div class="card mb-4 rounded-3 shadow-sm">
+                <div class="card-header py-3">
+                    <h4 class="my-0 fw-normal">{{ settings.mailing_status }}</h4>
+                </div>
+                <div class="card-body">
+                    <ul class="list-unstyled mt-3 mb-4">
+                        <li>{{ settings.mailing_status }}</li>
+                        <li>{{ settings.client.surname }}</li>
+                        <li>Messages:</li>
+                        <ul>
+                            {% for message in settings.client.messages.all %}
+                            <li>{{ message.subject }} - {{ message.body }}</li>
+                            <li>{{ settings.periodicity }} </li>
+                            {% endfor %}
+                        </ul>
+                    </ul>
+                    <a href="/settings_detail/{{ settings.pk }}/" class="w-100 btn btn-lg btn-outline-primary">Настройки деталей</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+
+</main>
+{% endblock %}

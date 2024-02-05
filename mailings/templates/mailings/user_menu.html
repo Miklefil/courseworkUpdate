@@ -1,0 +1,19 @@
+{% load static %}
+{% load mediapath %}
+
+<nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
+    {% if user.is_authenticated %}
+        {% if user.is_superuser %}
+            <a class="nav-link me-3 py-2" href="{% url 'users:profile' %}">{{ user.email }}</a>
+        {% else %}
+            <a class="nav-link me-3 py-2" href="{% url 'users:detail' %}">{{ user.email }}</a>
+        {% endif %}
+        <form action="{% url 'users:logout' %}" method="post" style="display: inline;">
+            {% csrf_token %}
+            <button type="submit" class="nav-link me-3 py-2 btn-link">Выйти</button>
+        </form>
+    {% else %}
+        <a class="nav-link me-3 py-2" href="{% url 'users:login' %}">Вход</a>
+        <a class="nav-link me-3 py-2" href="{% url 'users:registration' %}">Регистрация</a>
+    {% endif %}
+</nav>

@@ -1,0 +1,35 @@
+{% extends 'mailings/blog/blog_base.html' %}
+{% load static %}
+{% load mediapath %}
+
+{% block content %}
+
+<div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+
+    <div class="col p-4 d-flex flex-column position-static">
+
+        <h3 class="mb-0">{{ blog.title }}</h3>
+        <div class="mb-1 text-body-secondary">{{ blog.publication_date}}</div>
+        <p class="card-text mb-auto">{{ blog.article }}</p>
+        {% if user.is_superuser %}
+            <div class="col p-4">
+            <a href="/blog_update/{{ blog.pk }}/" class="icon-link">Update</a>
+            <a href="/blog_delete/{{ blog.pk }}/" class="icon-link">Delete</a>
+            </div>
+        {% endif %}
+    </div>
+
+    <div class="col-auto d-none d-lg-block">
+        <div class="col-auto d-none d-lg-block">
+            {% if blog.image %}
+            <img src="{{ blog.image.url }}" alt="{{ blog.title }}" class="img-fluid" width="255" height="255">
+            {% endif %}
+        </div>
+
+
+    </div>
+
+</div>
+
+
+{% endblock %}

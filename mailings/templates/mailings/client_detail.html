@@ -1,0 +1,32 @@
+{% extends 'mailings/base.html' %}
+{% load static %}
+{% block content %}
+<main>
+    <div class="row row-cols-1 row-cols-md-3 mb-3 text-left">
+        <div class="col">
+
+            <div class="card mb-4 rounded-3 shadow-sm">
+                <div class="card-header py-3">
+                    <h4 class="my-0 fw-normal">{{ client.name }} {{ client.surname }}</h4>
+                </div>
+                <div class="card-body">
+                    <ul class="list-unstyled mt-3 mb-4">
+                        <li>{{ client.email }}</li>
+                        <li>{{ client.comment }}</li>
+                    </ul>
+                    <form method="post" action="{% url 'send_email_to_client' client.pk %}">
+                        {% csrf_token %}
+                        <button type="submit" class="w-100 btn btn-lg btn-outline-primary">Send
+                        </button>
+                    </form>
+                    <a href="/client_update/{{ client.pk }}/" class="w-100 btn btn-lg btn-outline-primary">Update</a>
+                    <a href="/client_delete/{{ client.pk }}/" class="w-100 btn btn-lg btn-outline-warning">Delete</a>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
+{% endblock %}

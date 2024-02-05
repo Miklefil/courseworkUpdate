@@ -1,0 +1,46 @@
+{% extends 'mailings/base.html' %}
+{% load static %}
+{% load mediapath %}
+{% block content %}
+
+<main>
+    <div class="row g-4 py-5 row-cols-1 row-cols-lg-2">
+        <div class="feature col">
+            <div class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3">
+                <img src="{% mediapath 'rassilka.png' %}"/>
+            </div>
+            <h3 class="fs-2 text-body-emphasis text-center">Рассылка</h3>
+            <p>Вход в часть с рассылкой: создать\удалить новый список рассылки</p>
+            <a href="/index/" class="icon-link">
+                Перейти в рассылку
+            </a>
+        </div>
+        <div class="feature col">
+            <div class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3">
+                <img src="{% mediapath 'blog.png' %}"/>
+            </div>
+            <h3 class="fs-2 text-body-emphasis text-center">Блог</h3>
+            <p>Накидаю блог какой-то</p>
+            <a href="/blog/" class="icon-link text-right">
+                Перейти в блог
+            </a>
+        </div>
+    </div>
+
+    <ul class="list-unstyled mt-3 mb-4">
+        <li>Всего клиентов: {{ client_count }}</li>
+        <li>Всего сообщений: {{ message_count }}</li>
+        <li>Всего логов: {{ log_count }}</li>
+    </ul>
+    {% for blog in random_blog %}
+    <div class="card-header py-3">
+        <h4 class="my-0 fw-normal">{{ blog.title }}</h4>
+    </div>
+    <div class="card-body">
+        <p>{{ blog.article }}</p>
+        <!--a href="/blog_detail/{{ blog.pk }}/" class="icon-link gap-1 icon-link-hover stretched-link">Continue
+            reading /a /div   wierd-->
+    {% endfor %}
+</main>
+{% endblock %}
+
